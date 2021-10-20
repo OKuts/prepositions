@@ -38,17 +38,17 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const onKeypress = e => {
-      if (e.key === 'Enter') {
-        nextVerb();
-      }
-    };
-    document.addEventListener('keypress', onKeypress);
-    return () => {
-      document.removeEventListener('keypress', onKeypress);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const onKeypress = e => {
+  //     if (e.key === 'Enter') {
+  //       nextVerb();
+  //     }
+  //   };
+  //   document.addEventListener('keypress', onKeypress);
+  //   return () => {
+  //     document.removeEventListener('keypress', onKeypress);
+  //   };
+  // }, []);
 
   return (
     <div className="app">
