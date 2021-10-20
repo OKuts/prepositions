@@ -21,20 +21,17 @@ function App() {
 
   const updateVerbs = () => {
     setVerbs(roundData(data));
-    setIsNext(false);
     setPreposition('');
     setBtn('Next');
-    ref.current.focus();
   }
 
   const nextVerb = () => {
     if (verbs.length === 1) {
       setBtn('End');
     } else {
-      ref.current.focus();
+      console.log(verbs)
+      setBtn('Next');
       setVerbs(verbs.slice(1));
-      setIsNext(false);
-      setPreposition('');
     }
   }
 
@@ -49,6 +46,17 @@ function App() {
   //     document.removeEventListener('keypress', onKeypress);
   //   };
   // }, []);
+
+  useEffect(() => {
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(verbs[0][0] || data[0][0]));
+    setIsNext(false);
+    setPreposition('');
+    ref.current.focus();
+  }, [verbs])
+
+  // useEffect(() => {
+  //   setVerbs(roundData(data));
+  // }, [])
 
   return (
     <div className="app">
