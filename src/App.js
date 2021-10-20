@@ -1,9 +1,10 @@
 import './App.css';
 import {data} from './data'
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {roundData} from "./helpers/roundData";
 
 function App() {
+  const ref = useRef();
   const [verbs, setVerbs]  = useState(roundData(data));
   const [preposition, setPreposition] = useState('');
   const [isNext, setIsNext] = useState(false);
@@ -18,22 +19,49 @@ function App() {
     }
   }
 
+  const updateVerbs = () => {
+    setVerbs(roundData(data));
+    setIsNext(false);
+    setPreposition('');
+    setBtn('Next');
+    ref.current.focus();
+  }
+
   const nextVerb = () => {
     if (verbs.length === 1) {
       setBtn('End');
     } else {
-      setVerbs([...verbs.slice(1)]);
+      ref.current.focus();
+      setVerbs(verbs.slice(1));
       setIsNext(false);
       setPreposition('');
     }
   }
 
+  useEffect(() => {
+    const onKeypress = e => {
+      if (e.key === 'Enter') {
+        nextVerb();
+      }
+    };
+    document.addEventListener('keypress', onKeypress);
+    return () => {
+      document.removeEventListener('keypress', onKeypress);
+    };
+  }, []);
+
   return (
     <div className="app">
       <div className="wrap">
+        <div className="close">
+          <div className='update' onClick={updateVerbs}>Update</div>
+          <div className='close' onClick={() => window.close()}>Close</div>
+        </div>
         <div className="verb">
           {verbs[0][0]}
           <input
+            autoFocus={true}
+            ref = {ref}
             value={preposition}
             onChange={changeInput}
             type="text"/>
