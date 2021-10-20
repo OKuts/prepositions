@@ -69,3 +69,7 @@ input {
 .translate {
     margin-top: 60px;
 }
+
+.translate>p {
+    font-weight: bolder;
+}
