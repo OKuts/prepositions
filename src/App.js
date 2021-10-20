@@ -14,7 +14,7 @@ function App() {
   const changeInput = (e) => {
     const currentPreposition = e.target.value;
     setPreposition(currentPreposition);
-    if (currentPreposition.trim() === verbs[0][2]) {
+    if (currentPreposition.toLowerCase().trim() === verbs[0][2]) {
       setIsNext(true);
     }
   }
@@ -38,17 +38,17 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const onKeypress = e => {
-      if (e.key === 'Enter') {
-        nextVerb();
-      }
-    };
-    document.addEventListener('keypress', onKeypress);
-    return () => {
-      document.removeEventListener('keypress', onKeypress);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const onKeypress = e => {
+  //     if (e.key === 'Enter') {
+  //       nextVerb();
+  //     }
+  //   };
+  //   document.addEventListener('keypress', onKeypress);
+  //   return () => {
+  //     document.removeEventListener('keypress', onKeypress);
+  //   };
+  // }, []);
 
   return (
     <div className="app">
