@@ -14,7 +14,7 @@ function App() {
   const changeInput = (e) => {
     const currentPreposition = e.target.value;
     setPreposition(currentPreposition);
-    if (currentPreposition.trim() === verbs[0][2]) {
+    if (currentPreposition.toLowerCase().trim() === verbs[0][2]) {
       setIsNext(true);
     }
   }
