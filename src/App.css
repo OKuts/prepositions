@@ -6,7 +6,7 @@
 }
 
 .wrap {
-    width: 300px;
+    width: 330px;
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -24,6 +24,7 @@
     width: 50%;
     text-align: center;
     border-bottom: 1px solid lightgray;
+    padding-top: 8px;
 }
 
 .close div:hover  {
@@ -55,7 +56,7 @@ button {
 }
 
 input {
-    width: 50px;
+    width: 80px;
     background: lightgray;
     outline: none;
     border: none;
